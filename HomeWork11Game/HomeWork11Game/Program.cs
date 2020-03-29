@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using HomeWork11GameLibrary;
 
 namespace HomeWork11Game
 {
     class Program
     {
+        public static List<ProcessGuessing> allPlayersAndGuessings = new List<ProcessGuessing>();
+
+        public static void AddPlayerAndWeight(ProcessGuessing playerAndWeight)
+        {
+            allPlayersAndGuessings.Add(playerAndWeight);
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Let's start the game!\n");
@@ -34,7 +42,7 @@ namespace HomeWork11Game
                 Player.isGuessed = Mike.CheckGuessedNumbers(Mike.Guessed);
 
                 var mikeGuessing = new ProcessGuessing(Mike, Mike.Guessed);
-                ProcessGuessing.AddPlayerAndWeight(mikeGuessing);
+                AddPlayerAndWeight(mikeGuessing);
              
                 Player.Attempts++;
 
@@ -50,7 +58,7 @@ namespace HomeWork11Game
                 Player.isGuessed = Odry.CheckGuessedNumbers(Odry.Guessed);
 
                 var odryGuessing = new ProcessGuessing(Odry, Odry.Guessed);
-                ProcessGuessing.AddPlayerAndWeight(odryGuessing);
+                AddPlayerAndWeight(odryGuessing);
 
                 Player.Attempts++;
 
@@ -67,7 +75,7 @@ namespace HomeWork11Game
                 Player.isGuessed = Alex.CheckGuessedNumbers(Alex.Guessed);
 
                 var alexGuessing = new ProcessGuessing(Alex, Alex.Guessed);
-                ProcessGuessing.AddPlayerAndWeight(alexGuessing);
+                AddPlayerAndWeight(alexGuessing);
 
                 Player.Attempts++;
 
@@ -84,7 +92,7 @@ namespace HomeWork11Game
                 Player.isGuessed = Arnold.CheckGuessedNumbers(Arnold.Guessed);
 
                 var arnoldGuessing = new ProcessGuessing(Arnold, Arnold.Guessed);
-                ProcessGuessing.AddPlayerAndWeight(arnoldGuessing);
+                AddPlayerAndWeight(arnoldGuessing);
 
                 Player.Attempts++;
 
@@ -101,7 +109,7 @@ namespace HomeWork11Game
                 Player.isGuessed = Max.CheckGuessedNumbers(Max.Guessed);
 
                 var maxGuessing = new ProcessGuessing(Max, Max.Guessed);
-                ProcessGuessing.AddPlayerAndWeight(maxGuessing);
+                AddPlayerAndWeight(maxGuessing);
 
                 Player.Attempts++;
 
@@ -135,14 +143,14 @@ namespace HomeWork11Game
         {
             ProcessGuessing searchWinner=null;
 
-            int min = Math.Abs(FruitBasket.Weight - ProcessGuessing.allPlayersAndGuessings[0].Weight);
+            int min = Math.Abs(FruitBasket.Weight - allPlayersAndGuessings[0].Weight);
 
-            for (int i=0;i< ProcessGuessing.allPlayersAndGuessings.Count;i++)
+            for (int i=0;i< allPlayersAndGuessings.Count;i++)
             {
-                if (min > Math.Abs(FruitBasket.Weight - ProcessGuessing.allPlayersAndGuessings[i].Weight))
+                if (min > Math.Abs(FruitBasket.Weight - allPlayersAndGuessings[i].Weight))
                 {
-                    min = Math.Abs(FruitBasket.Weight - ProcessGuessing.allPlayersAndGuessings[i].Weight);
-                    searchWinner = ProcessGuessing.allPlayersAndGuessings[i];
+                    min = Math.Abs(FruitBasket.Weight - allPlayersAndGuessings[i].Weight);
+                    searchWinner = allPlayersAndGuessings[i];
                 }
             }
 

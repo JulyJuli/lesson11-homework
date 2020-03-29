@@ -18,13 +18,6 @@ namespace HomeWork11GameLibrary
             Weight = weight;
         }
 
-        public static List<ProcessGuessing> allPlayersAndGuessings = new List<ProcessGuessing>();
-
-        public static void AddPlayerAndWeight(ProcessGuessing playerAndWeight)
-        {
-            allPlayersAndGuessings.Add(playerAndWeight);
-        }
-
         public override string ToString()
         {
             return Player.ToString();
