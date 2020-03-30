@@ -4,13 +4,11 @@ namespace HomeWork11GameLibrary
 {
     public class FruitBasket 
     {
-        Random randomWeight = new Random();
-
         int MinWeight = 40;
         int MaxWeight = 140;
         public FruitBasket()
         {
-            Weight = randomWeight.Next(MinWeight, MaxWeight);
+            Weight = new Random().Next(MinWeight, MaxWeight);
         }
 
         public static int Weight { get; set; }

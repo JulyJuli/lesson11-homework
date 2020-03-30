@@ -10,8 +10,6 @@ namespace HomeWork11GameLibrary
         public static int MaxWeight = 140;
         public static int MaxAttempts = 100;
 
-        public Random randomWeight = new Random(DateTime.UtcNow.Millisecond);
-
         //public static List<Player> AllPlayers = new List<Player>();
 
         public static bool isGuessed = false;
@@ -53,7 +51,7 @@ namespace HomeWork11GameLibrary
 
         public virtual int Guessing()
         {
-            return Guessed = randomWeight.Next(MinWeight, MaxWeight);
+            return Guessed = new Random().Next(MinWeight, MaxWeight);
         }
 
         public static List<int> AddGuessNumbers(List<int> numbers, int guesseingNumber)

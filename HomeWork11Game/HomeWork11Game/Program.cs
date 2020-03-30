@@ -21,22 +21,20 @@ namespace HomeWork11Game
             fruitBasket.PrintInfo();
             Console.WriteLine();
 
+            var Mike = new OrdinaryPlayer("Mike", TypeOfPlayer.ordinary);
+
+            var Odry = new UberPlayer("Odry", TypeOfPlayer.uber);
+            Odry.UberInitialized = Odry.AddValues(Odry.UberInitialized);
+
+            var Alex = new NotepadPlayer("Alex", TypeOfPlayer.notepad);
+
+            var Arnold = new CheaterPlayer("Arnold", TypeOfPlayer.cheater);
+
+            var Max = new UberCheaterPlayer("Max", TypeOfPlayer.uberCheater);
+            Max.AddValues(Max.UberCheaterInitialized);
 
             for (int i = 0; i < Player.MaxAttempts / 5; i++)
             {
-
-                var Mike = new OrdinaryPlayer("Mike", TypeOfPlayer.ordinary);
-
-                var Odry = new UberPlayer("Odry", TypeOfPlayer.uber);
-                Odry.UberInitialized = Odry.AddValues(Odry.UberInitialized);
-
-                var Alex = new NotepadPlayer("Alex", TypeOfPlayer.notepad);
-
-                var Arnold = new CheaterPlayer("Arnold", TypeOfPlayer.cheater);
-
-                var Max = new UberCheaterPlayer("Max", TypeOfPlayer.uberCheater);
-                Max.AddValues(Max.UberCheaterInitialized);
-
 
                 Mike.Guessing();        
                 Player.AllListsNumbers = Mike.JaggedList(Player.AddGuessNumbers(Mike.OrdinaryGuessed, Mike.Guessed));
