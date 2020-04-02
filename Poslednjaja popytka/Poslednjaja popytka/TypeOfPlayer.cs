@@ -1,10 +1,11 @@
-﻿namespace HomeWork11GameLibrary
+﻿
+namespace Poslednjaja_popytka
 {
     public enum TypeOfPlayer
     {
-        ordinary,
-        cheater,
+        usual,
         notepad,
+        cheater,
         uberCheater,
         uber
     }

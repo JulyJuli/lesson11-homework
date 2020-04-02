@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EF05D4E2-5DAE-4095-8114-BB5F390ABAFD}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HomeWork11GameLibrary</RootNamespace>
-    <AssemblyName>HomeWork11GameLibrary</AssemblyName>
+    <ProjectGuid>{82284A3D-F073-4DE3-BEC1-99BD17D67258}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Poslednjaja_popytka</RootNamespace>
+    <AssemblyName>Poslednjaja popytka</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,16 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasePlayer.cs" />
     <Compile Include="CheaterPlayer.cs" />
     <Compile Include="FruitBasket.cs" />
     <Compile Include="NotepadPlayer.cs" />
-    <Compile Include="OrdinaryPlayer.cs" />
-    <Compile Include="Player.cs" />
     <Compile Include="ProcessGuessing.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeOfPlayer.cs" />
     <Compile Include="UberCheaterPlayer.cs" />
     <Compile Include="UberPlayer.cs" />
+    <Compile Include="UsualPlayer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

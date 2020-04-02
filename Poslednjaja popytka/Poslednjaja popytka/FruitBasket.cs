@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace HomeWork11GameLibrary
+namespace Poslednjaja_popytka
 {
-    public class FruitBasket 
+    public class FruitBasket
     {
-        int MinWeight = 40;
-        int MaxWeight = 140;
+        protected const int MinWeight = 40;
+        protected const int MaxWeight = 140;
         public FruitBasket()
         {
             Weight = new Random().Next(MinWeight, MaxWeight);
