@@ -5,8 +5,8 @@ namespace Game.classes
 {
     public abstract class Player : IHuman
     {
-        public const int MIN_VALUE = 40;
-        public const int MAX_VALUE = 140;
+        private protected const int MIN_VALUE = 40;
+        private protected const int MAX_VALUE = 140;
         public Player(string name)
         {
             Name = name;
