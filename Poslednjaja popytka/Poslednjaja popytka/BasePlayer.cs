@@ -11,13 +11,13 @@ namespace Poslednjaja_popytka
 
         public bool isGuessed;
 
-        protected static readonly List<int> allGuessedNumbers = new List<int>();
+        public static readonly List<int> allGuessedNumbers = new List<int>();
         public BasePlayer()
         {
         }
 
         public int Guess { get; set; }
-        protected TypeOfPlayer TypeOfPlayer { get; set; }
+        public TypeOfPlayer TypeOfPlayer { get; set; }
 
         public abstract int GuessNumber();
 

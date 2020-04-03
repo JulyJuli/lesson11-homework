@@ -5,12 +5,10 @@ namespace Poslednjaja_popytka
 {
     public class Program
     {
-        public static List<ProcessGuessing> allPlayersAndGuessings = new List<ProcessGuessing>();
-
+        // public static List<ProcessGuessing> allPlayers = new List<ProcessGuessing>();
         public static void Main(string[] args)
         {
             var numberOfAttempts = 100;
-
             var fruitBasket = new FruitBasket();
             fruitBasket.PrintInfo();
 
@@ -24,6 +22,7 @@ namespace Poslednjaja_popytka
                 new UberCheaterPlayer()
             };
 
+            var allPlayersList = new List<ProcessGuessing>();
 
             bool notGuess = true;
 
@@ -33,7 +32,9 @@ namespace Poslednjaja_popytka
                 {
                     playerList[j].Guess = playerList[j].GuessNumber();
                     var currentPlayer = new ProcessGuessing(playerList[j], playerList[j].Guess);
-                    allPlayersAndGuessings.Add(currentPlayer);
+
+                    allPlayersList.Add(currentPlayer);
+
                     bool win = playerList[j].CheckGuessedNumbers(playerList[j].Guess);
                     playerList[j].PrintInfo(playerList[j].Guess);
 
@@ -49,27 +50,42 @@ namespace Poslednjaja_popytka
             }
 
 
-            Console.WriteLine($"The winner: {SearchWinner()}");
+            // Console.WriteLine($"The winner: {SearchWinner(allPlayersList)}");
 
+
+            Console.WriteLine($"The winner: {SearchWinner()}");
 
             Console.ReadKey();
         }
-        public static string SearchWinner()
+        public static int SearchWinner()
         {
-            ProcessGuessing searchWinner = allPlayersAndGuessings[0];
+            int result = 0;
+            int min = BasePlayer.allGuessedNumbers[0];
 
-            int min = Math.Abs(FruitBasket.Weight - allPlayersAndGuessings[0].Weight);
-
-            for (int i = 0; i < allPlayersAndGuessings.Count; i++)
+            for (int i = 0; i < BasePlayer.allGuessedNumbers.Count; i++)
             {
-                if (min > Math.Abs(FruitBasket.Weight - allPlayersAndGuessings[i].Weight))
+                if (min > Math.Abs(FruitBasket.Weight - BasePlayer.allGuessedNumbers[i]))
                 {
-                    min = Math.Abs(FruitBasket.Weight - allPlayersAndGuessings[i].Weight);
-                    searchWinner = allPlayersAndGuessings[i];
+                    min = Math.Abs(FruitBasket.Weight - BasePlayer.allGuessedNumbers[i]);
+                    result = BasePlayer.allGuessedNumbers[i];
                 }
             }
+            return result;
 
-            return $"The winner is: {searchWinner}";
+            //ProcessGuessing searchWinner = allPlayersList[0];
+
+            //int min = Math.Abs(FruitBasket.Weight - allPlayersList[0].Weight);
+
+            //for (int i = 0; i < allPlayersList.Count; i++)
+            //{
+            //    if (min > Math.Abs(FruitBasket.Weight - allPlayersList[i].Weight))
+            //    {
+            //        min = Math.Abs(FruitBasket.Weight - allPlayersList[i].Weight);
+            //        searchWinner = allPlayersList[i];
+            //    }
+            //}
+
+            //return $"The winner is: {searchWinner}";
         }
     }
 }
