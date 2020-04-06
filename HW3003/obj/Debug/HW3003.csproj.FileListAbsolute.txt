@@ -1,0 +1,12 @@
+E:\HomeWork_A_LVL\HomeWork11\HW3003\obj\Debug\HW3003.csprojAssemblyReference.cache
+E:\HomeWork_A_LVL\HomeWork11\HW3003\bin\Debug\HW3003.exe.config
+E:\HomeWork_A_LVL\HomeWork11\HW3003\bin\Debug\HW3003.exe
+E:\HomeWork_A_LVL\HomeWork11\HW3003\bin\Debug\HW3003.pdb
+E:\HomeWork_A_LVL\HomeWork11\HW3003\obj\Debug\HW3003.exe
+E:\HomeWork_A_LVL\HomeWork11\HW3003\obj\Debug\HW3003.pdb
+C:\Users\e.repin\Desktop\C# A-Level\HomeWork_A_LVL\HomeWork11\HW3003\bin\Debug\HW3003.exe.config
+C:\Users\e.repin\Desktop\C# A-Level\HomeWork_A_LVL\HomeWork11\HW3003\bin\Debug\HW3003.exe
+C:\Users\e.repin\Desktop\C# A-Level\HomeWork_A_LVL\HomeWork11\HW3003\bin\Debug\HW3003.pdb
+C:\Users\e.repin\Desktop\C# A-Level\HomeWork_A_LVL\HomeWork11\HW3003\obj\Debug\HW3003.csprojAssemblyReference.cache
+C:\Users\e.repin\Desktop\C# A-Level\HomeWork_A_LVL\HomeWork11\HW3003\obj\Debug\HW3003.exe
+C:\Users\e.repin\Desktop\C# A-Level\HomeWork_A_LVL\HomeWork11\HW3003\obj\Debug\HW3003.pdb
