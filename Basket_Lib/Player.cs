@@ -15,7 +15,5 @@ namespace Basket_Lib
         }
 
         public abstract int GetGuess(Game game);
-
-        
     }
 }

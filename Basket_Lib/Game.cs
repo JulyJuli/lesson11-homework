@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using static Basket_Lib.DelegateHolder;
 
 namespace Basket_Lib
@@ -39,11 +37,6 @@ namespace Basket_Lib
             MessageHandler($"Guessed number is: {GuessedNumber}.");
             MessageHandler($"Basket borders: {MinBasketWeight }...{MaxBasketWeight}.\n");
 
-            foreach (var player in PlayerList)
-            {
-                Task task = new Task(player.GetGuess(this));
-            }
-
             for (int i = 0; i < AttemptList.Capacity; i++)
             {
                 GetPlayer(ref pointer).GetGuess(this);
@@ -70,7 +63,6 @@ namespace Basket_Lib
                         $" - chosed number: {attempt.ChosedNumber}. ");
             }
         }
-
         private Player GetPlayer(ref int index)
         {
             if (index >= PlayerList.Count) { index = 0; }
