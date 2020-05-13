@@ -7,12 +7,12 @@
         public string PlayerName { get; private set; }
         public int ChosedNumber { get; private set; }
 
-        public Attempt(Player player, int chosedNUmber)
+        public Attempt(Player player, int chosedNumber)
         {
             PlayerType = player.GetType().Name;
             PlayerID = Player.ID;
             PlayerName = player.Name;
-            ChosedNumber = chosedNUmber;
+            ChosedNumber = chosedNumber;
         }
     }
 }

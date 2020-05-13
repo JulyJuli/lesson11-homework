@@ -42,15 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attempt.cs" />
-    <Compile Include="CheatPlayer.cs" />
+    <Compile Include="Players\CheatPlayer.cs" />
     <Compile Include="DelegateHolder.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="NotePlayer.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Players\NotePlayer.cs" />
+    <Compile Include="Players\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UberCheatPlayer.cs" />
-    <Compile Include="UberPlayer.cs" />
-    <Compile Include="UsualPlayer.cs" />
+    <Compile Include="Players\UberCheatPlayer.cs" />
+    <Compile Include="Players\UberPlayer.cs" />
+    <Compile Include="Players\UsualPlayer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

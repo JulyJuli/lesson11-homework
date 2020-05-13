@@ -1,5 +1,6 @@
 ﻿using Basket_Lib;
 using System;
+using System.Threading.Tasks;
 
 namespace Homework11_BasketGame
 {
@@ -12,10 +13,10 @@ namespace Homework11_BasketGame
 
             game.SetMessageHandler(PrintMessage);
             game.AddPlayer(new UsualPlayer("Usual1"));
-            game.AddPlayer(new NotePlayer("Note1"));
-            game.AddPlayer(new UberPlayer("Uber1"));
-            game.AddPlayer(new CheatPlayer("Cheat1"));
-            game.AddPlayer(new UberCheatPlayer("UberCheat1"));
+            //game.AddPlayer(new NotePlayer("Note1"));
+            //game.AddPlayer(new UberPlayer("Uber1"));
+            //game.AddPlayer(new CheatPlayer("Cheat1"));
+            //game.AddPlayer(new UberCheatPlayer("UberCheat1"));
 
             game.Go();
 

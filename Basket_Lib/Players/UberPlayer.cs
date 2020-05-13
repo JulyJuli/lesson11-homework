@@ -4,15 +4,16 @@
     {
         private int? CurrentAttemptNumber { get; set; } = null;
 
+
         public UberPlayer(string name) : base(name) { }
 
-        public override int GetGuess(Game game)
+
+        public override int GetNumber(Game game)
         {
             if (!CurrentAttemptNumber.HasValue)
             {
                 CurrentAttemptNumber = game.MinBasketWeight;
             }
-            game.AttemptList.Add(new Attempt(this, (int)CurrentAttemptNumber));
             return (int)CurrentAttemptNumber++;
         }
     }
