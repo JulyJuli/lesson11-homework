@@ -62,29 +62,9 @@ namespace Basket_Lib
             MessageHandler($"Guessed number is: {GuessedNumber}.");
             MessageHandler($"Basket borders: {MinBasketWeight }...{MaxBasketWeight}.\n");
 
-            foreach (var item in Tasks)
-            {
-                Console.WriteLine(item.Status);
-            }
-            Task.WaitAny(Tasks);
-
-            
-        }
-
-        private void GameFinishing()
-        {
-            MessageHandler($"    No winners...\n");
-            int closestAttempt = AttemptList.OrderBy(i => Math.Abs(i.ChosedNumber - GuessedNumber)).ToList()[0].ChosedNumber;
-            List<Attempt> almostWinnerList = AttemptList.OrderBy(i => Math.Abs(i.ChosedNumber - GuessedNumber)).TakeWhile(i => i.ChosedNumber == closestAttempt).ToList();
-
-            if (almostWinnerList.Count == 1) { MessageHandler(" The closest attempt was:"); }
-            else { MessageHandler(" The closest attempts were:"); }
-
-            foreach (var attempt in almostWinnerList)
-            {
-                MessageHandler($"  {attempt.PlayerName}, {attempt.PlayerType}, ID {attempt.PlayerID}" +
-                        $" - chosed number: {attempt.ChosedNumber}. ");
-            }
+            // Only one task can complete execution - it is a trigger,
+            // and we will wait for it to exit to Main() and print a test tring in it.
+            Task.WaitAny(Tasks.Where(i => i != null).ToArray());
         }
 
 
@@ -95,20 +75,22 @@ namespace Basket_Lib
 
         public void AttemptProcessing(Attempt attempt)
         {
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
             lock (locker)
             {
+                // Base recursion case.
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
 
+                // Recursive case.
+                #region  
                 // When attempts count reaches attempt capacity - game is finished,
-                // tasks need to be disposed.
+                // cancellation token is activated.
                 if (AvailableAttemptsCheck() == false)
                 {
-                    GameFinishing(); // Printing info of almost winners' attempts.
+                    GameFinishing(); // Printing info of attempts of almost winners.
                     CTS.Cancel();
-                    TasksDispose();
                     return;
                 }
                 AttemptList.Add(attempt);
@@ -116,12 +98,24 @@ namespace Basket_Lib
                 {
                     DisplayWinner();
                     CTS.Cancel();
-
-                    // I think it can be a little more winners if 
-                    //i will not do .Dispose() for all tasks.
-                    TasksDispose();
-                    
                 }
+                #endregion
+            }
+        }
+
+        private void GameFinishing()
+        {
+            MessageHandler($"  No winners...\n");
+            int closestAttempt = AttemptList.OrderBy(i => Math.Abs(i.ChosedNumber - GuessedNumber)).ToList()[0].ChosedNumber;
+            List<Attempt> almostWinnerList = AttemptList.OrderBy(i => Math.Abs(i.ChosedNumber - GuessedNumber)).TakeWhile(i => i.ChosedNumber == closestAttempt).ToList();
+
+            if (almostWinnerList.Count == 1) { MessageHandler(" The closest attempt was:"); }
+            else { MessageHandler(" The closest attempts were:"); }
+
+            foreach (var attempt in almostWinnerList)
+            {
+                MessageHandler($"  {attempt.PlayerName}, {attempt.PlayerType}, ID {attempt.PlayerID}" +
+                        $" - chosed number: {attempt.ChosedNumber}. ");
             }
         }
 
@@ -139,15 +133,6 @@ namespace Basket_Lib
         public bool AvailableAttemptsCheck()
         {
             return (AttemptList.Count <= MaxAttempts) ? true : false;
-        }
-
-        public void TasksDispose()
-        {
-            foreach (Task task in Tasks)
-            {
-
-               // task.Dispose();
-            }
         }
     }
 }
