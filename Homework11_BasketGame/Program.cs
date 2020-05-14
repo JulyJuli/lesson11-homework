@@ -21,7 +21,7 @@ namespace Homework11_BasketGame
 
             game.Go();
 
-            // A test line to determine, whether all inner tasks are completed.
+            // A test line to determine, whether all inner tasks(Processes?) are completed.
             Console.Write("\nAny key to quit...");
             Console.ReadKey();
         }

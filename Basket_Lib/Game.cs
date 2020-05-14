@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Basket_Lib
 {
-
     public class Game
     {
         public static readonly object locker = new object();
@@ -24,8 +23,6 @@ namespace Basket_Lib
         private Task[] Tasks { get; set; }  // Because I want to.
 
 
-
-
         public Game(int min = 40, int max = 140, int guessedNumber = 141, int maxAttempts = 100)
         {
             MinBasketWeight = min;
@@ -34,7 +31,6 @@ namespace Basket_Lib
             AttemptList = new List<Attempt>();
             PlayerList = new List<Player>();
             MaxAttempts = maxAttempts;
-
         }
 
         public void SetMessageHandler(Action<string> message)
@@ -79,9 +75,7 @@ namespace Basket_Lib
                 {
                     return;
                 }
-
-                // Recursive case.
-                #region  
+                
                 // When attempts count reaches attempt capacity - game is finished,
                 // cancellation token is activated.
                 if (AvailableAttemptsCheck() == false)
@@ -90,13 +84,14 @@ namespace Basket_Lib
                     CTS.Cancel();
                     return;
                 }
+
                 AttemptList.Add(attempt);
+
                 if (attempt.ChosedNumber == GuessedNumber)
                 {
                     DisplayWinner();
                     CTS.Cancel();
                 }
-                #endregion
             }
         }
 
