@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Attempt.cs" />
     <Compile Include="Players\CheatPlayer.cs" />
-    <Compile Include="DelegateHolder.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Players\NotePlayer.cs" />
     <Compile Include="Players\Player.cs" />
