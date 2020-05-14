@@ -18,7 +18,7 @@ namespace Basket_Lib
         public int MaxBasketWeight { get; private set; }
         public int MinBasketWeight { get; private set; }
         public int MaxAttempts { get; set; }
-        private ShowMessage MessageHandler { get; set; }
+        private Action<string> MessageHandler { get; set; }
         public int GuessedNumber { get; private set; }
 
 
@@ -40,7 +40,7 @@ namespace Basket_Lib
 
         }
 
-        public void SetMessageHandler(ShowMessage message)
+        public void SetMessageHandler(Action<string> message)
         {
             MessageHandler = message;
         }
