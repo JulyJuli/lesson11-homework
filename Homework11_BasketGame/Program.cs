@@ -9,7 +9,7 @@ namespace Homework11_BasketGame
         public static void Main(string[] args)
         {
             // Set a default constructor for an unfair game.
-            Game game = new Game(20, 60, 58);
+            Game game = new Game(20, 160, 158);
 
             game.SetMessageHandler(PrintMessage);
             game.AddPlayer(new UsualPlayer("Usual1"));

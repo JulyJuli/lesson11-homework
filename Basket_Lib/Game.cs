@@ -17,12 +17,13 @@ namespace Basket_Lib
         public List<Player> PlayerList { get; private set; }
         public int MaxBasketWeight { get; private set; }
         public int MinBasketWeight { get; private set; }
+        public int MaxAttempts { get; set; }
         private ShowMessage MessageHandler { get; set; }
         public int GuessedNumber { get; private set; }
 
 
         private static CancellationTokenSource CTS = new CancellationTokenSource();
-        private static CancellationToken Token = CTS.Token;
+        public static CancellationToken token = CTS.Token;
         private Task[] Tasks { get; set; }  // Because I want to.
 
 
@@ -33,8 +34,9 @@ namespace Basket_Lib
             MinBasketWeight = min;
             MaxBasketWeight = max;
             GuessedNumber = guessedNumber;
-            AttemptList = new List<Attempt>(maxAttempts);
+            AttemptList = new List<Attempt>();
             PlayerList = new List<Player>();
+            MaxAttempts = maxAttempts;
 
         }
 
@@ -49,8 +51,7 @@ namespace Basket_Lib
             Tasks = new Task[PlayerList.Count];
             for (int i = 0; i < PlayerList.Count; i++)
             {
-                Tasks[0] = new Task(() => PlayerList[0].GetGuess(this), Token);
-
+                Tasks[0] = new Task(() => PlayerList[0].GetGuess(this), token);
             }
             foreach (var player in PlayerList)
             {
@@ -61,11 +62,13 @@ namespace Basket_Lib
             MessageHandler($"Guessed number is: {GuessedNumber}.");
             MessageHandler($"Basket borders: {MinBasketWeight }...{MaxBasketWeight}.\n");
 
-            // They are alive!!!! =)
-            foreach (var task in Tasks)
+            foreach (var item in Tasks)
             {
-                task?.RunSynchronously();
+                Console.WriteLine(item.Status);
             }
+            Task.WaitAny(Tasks);
+
+            
         }
 
         private void GameFinishing()
@@ -74,8 +77,8 @@ namespace Basket_Lib
             int closestAttempt = AttemptList.OrderBy(i => Math.Abs(i.ChosedNumber - GuessedNumber)).ToList()[0].ChosedNumber;
             List<Attempt> almostWinnerList = AttemptList.OrderBy(i => Math.Abs(i.ChosedNumber - GuessedNumber)).TakeWhile(i => i.ChosedNumber == closestAttempt).ToList();
 
-            if (almostWinnerList.Count == 1) { MessageHandler(" The closest attempt is:"); }
-            else { MessageHandler(" The closest attempts was:"); }
+            if (almostWinnerList.Count == 1) { MessageHandler(" The closest attempt was:"); }
+            else { MessageHandler(" The closest attempts were:"); }
 
             foreach (var attempt in almostWinnerList)
             {
@@ -92,13 +95,19 @@ namespace Basket_Lib
 
         public void AttemptProcessing(Attempt attempt)
         {
+            if (token.IsCancellationRequested)
+            {
+                return;
+            }
             lock (locker)
             {
+
                 // When attempts count reaches attempt capacity - game is finished,
                 // tasks need to be disposed.
                 if (AvailableAttemptsCheck() == false)
                 {
                     GameFinishing(); // Printing info of almost winners' attempts.
+                    CTS.Cancel();
                     TasksDispose();
                     return;
                 }
@@ -106,10 +115,12 @@ namespace Basket_Lib
                 if (attempt.ChosedNumber == GuessedNumber)
                 {
                     DisplayWinner();
+                    CTS.Cancel();
 
                     // I think it can be a little more winners if 
                     //i will not do .Dispose() for all tasks.
                     TasksDispose();
+                    
                 }
             }
         }
@@ -127,7 +138,7 @@ namespace Basket_Lib
 
         public bool AvailableAttemptsCheck()
         {
-            return (AttemptList.Count <= AttemptList.Capacity) ? true : false;
+            return (AttemptList.Count <= MaxAttempts) ? true : false;
         }
 
         public void TasksDispose()
@@ -135,7 +146,7 @@ namespace Basket_Lib
             foreach (Task task in Tasks)
             {
 
-                task.Dispose();
+               // task.Dispose();
             }
         }
     }

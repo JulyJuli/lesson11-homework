@@ -22,8 +22,11 @@ namespace Basket_Lib
         {
             game.AttemptProcessing(new Attempt(this, GetNumber(game)));
 
-            // Will be cycled until the task will be disposed
-            // from game.TasksDispose().
+            // Will be cycled until the task will be cancelled
+            if (Game.token.IsCancellationRequested)
+            {
+                return;
+            }
             GetGuess(game);
         }
 
